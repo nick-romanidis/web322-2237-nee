@@ -1,0 +1,19 @@
+{
+  "name": "ex5-more-express",
+  "version": "1.0.0",
+  "description": "This is a fancy site for booking cottages.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cottage",
+    "rental",
+    "fancy"
+  ],
+  "author": "Nick Romanidis",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
