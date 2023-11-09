@@ -4,6 +4,9 @@ const expressLayouts = require('express-ejs-layouts');
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
+const session = require("express-session");
+const fileUpload = require("express-fileupload");
+
 // Set up dotenv to protect environment variables
 dotenv.config({ path: "./config/keys.env" });
 
@@ -15,8 +18,28 @@ app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main');
 app.use(expressLayouts);
 
+// Set up a static folder.
+app.use(express.static("assets"));
+
 // Set up body parser.
 app.use(express.urlencoded({ extended: true }));
+
+// Set up express-fileupload.
+app.use(fileUpload());
+
+// Set up express-session
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use((req, res, next) => {
+    // res.locals.user is a global EJS variable.
+    // This means that every single EJS file can access this variable.
+    res.locals.user = req.session.user;
+    next();
+});
 
 // Set up controllers
 const generalController = require("./controllers/generalController");

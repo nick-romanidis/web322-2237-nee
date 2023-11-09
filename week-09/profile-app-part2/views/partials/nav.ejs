@@ -2,6 +2,12 @@
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/user/register">Register</a></li>
+        <% if (typeof user === "undefined") { %>
+            <li><a href="/user/login">Login</a></li>
+            <li><a href="/user/register">Register</a></li>
+        <% } else { %>
+            <li>Hello <%= user.firstName %></li>
+            <li><a href="/user/logout">Logout</a></li>
+        <% } %>
     </ul>
 </nav>
