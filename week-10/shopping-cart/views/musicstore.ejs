@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB322 Shopping Cart Example</title>
+</head>
+<body>
+    <h1>Shopping Cart Example</h1>
+
+    <% if (typeof message === "string" && message.length > 0) { %>
+        <h3 style="color: red;"><%= message %></h3>
+    <% } %>
+
+    <h2>User Details</h2>
+    <dl>
+        <dt>Logged In?</dt>
+        <% if (typeof user === "object" && user) { %>
+            <dd>Yes</dd>
+        <% } else { %>
+            <dd>No</dd>
+        <% } %>
+    </dl>
+
+    <h2>Shopping Cart</h2>
+    <dl>
+        <dt>Cart Empty?</dt>
+        <% if (typeof hasSongs === "boolean" && hasSongs) { %>
+            <dd>No</dd>
+        <% } else { %>
+            <dd>Yes</dd>
+        <% } %>
+
+        <dt>Cart Amount</dt>
+        <% if (typeof cartTotal === "number") { %>
+            <dd>$<%= cartTotal.toFixed(2) %></dd>
+        <% } %>
+    </dl>
+
+    <% if (typeof hasSongs === "boolean" && hasSongs) { %>
+        <table border="1" cellspacing="2" cellpadding="2">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Artist</th>
+                <th>Quantity</th>
+            </tr>
+
+            <% if (typeof songs === "object" && songs.constructor === Array) { %>
+                <% songs.forEach(s => { %>
+                    <tr>
+                        <td><%= s.id %></td>
+                        <td><%= s.song.name %></td>
+                        <td><%= s.song.artist %></td>
+                        <td><%= s.qty %></td>
+                    </tr>
+                <% }) %>
+            <% } %>
+        </table>
+    <% } %>
+
+    <h2>Actions</h2>
+    <div>
+        <button type="button" onclick="window.location.href='/'">Home</button>
+        <button type="button" onclick="window.location.href='/login'">Login</button>
+        <button type="button" onclick="window.location.href='/logout'">Logout</button>
+        <button type="button" onclick="window.location.href='/check-out'">Checkout</button><br/>
+        <br/>
+
+        <button type="button" onclick="window.location.href='/add-song/1'">Add Song 1</button>
+        <button type="button" onclick="window.location.href='/add-song/2'">Add Song 2</button>
+        <button type="button" onclick="window.location.href='/add-song/3'">Add Song 3</button>
+        <button type="button" onclick="window.location.href='/add-song/4'">Add Song 4</button><br/>
+        <br/>
+
+        <button type="button" onclick="window.location.href='/remove-song/1'">Remove Song 1</button>
+        <button type="button" onclick="window.location.href='/remove-song/2'">Remove Song 2</button>
+        <button type="button" onclick="window.location.href='/remove-song/3'">Remove Song 3</button>
+    </div>        
+</body>
+</html>
