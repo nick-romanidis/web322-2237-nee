@@ -101,6 +101,6 @@ function onHttpStart() {
 // Listen on port 8080. The default port for http is 80, https is 443. We use 8080 here
 // because sometimes port 80 is in use by other applications on the machine
 // Connect to the MongoDB
-mongoose.connect("mongodb+srv://dbUser:Password123@web322-cluster.etw0klh.mongodb.net/web322db?retryWrites=true&w=majority").then(() => {
+mongoose.connect("connectionstring/url").then(() => {
     app.listen(HTTP_PORT, onHttpStart);
 });
